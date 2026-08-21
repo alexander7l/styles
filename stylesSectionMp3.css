@@ -1,0 +1,307 @@
+/* === Posicionamiento general del reproductor === */
+#mp3Player {
+  position: absolute;
+  bottom: 1%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  z-index: 2;
+  font-family: 'Roboto', sans-serif;
+  /*outline: 2px solid red;*/
+  height: auto;
+}
+
+/* === Contenedor principal de título, artista y botón === */
+.track-info {
+  width: 90%;
+  display: flex;
+  justify-content: flex-start;   /* ← modificado (antes space-between) */
+  align-items: center;
+  /*outline: 2px solid blue;*/
+}
+
+/* === Contenedor de texto (título + artista) === */
+.track-info-text {
+  flex: 1;
+  max-width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  /*outline: 2px solid black;*/
+}
+
+/* === Título de la canción === */
+.track-title {
+  width: 100%;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  /*outline: 2px solid red;*/
+}
+
+/* === Nombre del artista === */
+.track-artist {
+  font-size: 14px;
+  color: #555;
+  margin: 0;
+}
+
+/* Botón more al extremo derecho */
+#more-btn {
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+}
+
+#more-icon svg {
+  width: 20px;
+  height: 20px;
+  fill: #111;
+}
+
+/* === Barra de progreso === */
+.progress-container {
+  width: 90%;
+  display: flex;
+  align-items: center;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 5px;
+  background: #bdc3c7;
+  border-radius: 12px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  background: #ff4200;
+  border-radius: 50%;
+}
+
+/* === Display de tiempos === */
+.time-display {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  margin-top: -5px;
+}
+
+/* === Controles === */
+.controls-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Solo afecta a los textos dentro de la top row */
+.controls-row.top-row .label {
+  font-size: 14px;
+  font-weight: cursive;
+  color: #111;
+  margin-left: 6px;
+  transition: color 0.2s;
+}
+
+.top-row {
+  width: 90%;
+  justify-content: space-between;
+  gap: 2px;
+}
+
+.middle-row {
+  width: 90%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  /*outline: 2px solid orange;*/
+  margin-top: -12px;
+}
+
+.bottom-row {
+  width: 100%;
+  justify-content: space-between;
+  gap: 0px;
+  margin-top: 5px;
+}
+
+.bottom-row button:nth-child(2) {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.bottom-row .text-btn {
+  text-shadow: 0 0 0 rgba(0, 180, 255, 0);
+  animation: baselineGlow 2s ease-in-out infinite;
+}
+
+@keyframes baselineGlow {
+  0%, 100% { text-shadow: 0 0 0 rgba(0, 180, 255, 0); }
+  50% { text-shadow: 0 3px 8px rgba(0, 180, 255, 0.6), 0 8px 22px rgba(0, 180, 255, 0.4); }
+}
+
+/* === Botones generales === */
+button {
+  background: transparent;
+  border: none;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button:hover svg {
+  transform: scale(1.1);
+}
+
+/* === Botones de texto === */
+.text-btn {
+  background: none;
+  border: none;
+  font-size: 14px;
+  color: #111;
+}
+
+.text-btn:hover {
+  color: #27BBF5;
+}
+
+/* === Toggle Play/Pause === */
+#playPause-btn {
+  position: relative;
+  flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#circle svg {
+  width: 50px;
+  height: 50px;
+  display: block;
+  fill: #FA4920;
+}
+
+#play-icon svg,
+#pause-icon svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 22px;
+  height: 22px;
+  fill: #FFFFFF;
+}
+
+#play-icon svg {
+  transform: translate(-46%, -50%);
+}
+
+.hidden {
+  display: none;
+}
+
+/* === Toggle Canvas / MP3 === */
+#canvas-on-icon { display: inline-block; }
+#mp3-on-icon { display: none; }
+#view-toggle-btn.view-canvas #canvas-on-icon { display: none; }
+#view-toggle-btn.view-canvas #mp3-on-icon { display: inline-block; }
+
+/* Shuffle */
+#shuffle-btn { position: relative; }
+#shuffle-icon { display: inline-block; }
+
+.shuffle-state-on::before {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  right: 50%;
+  transform: translateX(50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: #ff4200;
+}
+
+/* Play / Pause */
+#playPause-btn.paused #play-icon { display: inline-block; }
+#playPause-btn.paused #pause-icon { display: none; }
+#playPause-btn.playing #play-icon { display: none; }
+#playPause-btn.playing #pause-icon { display: inline-block; }
+
+/* Repeat */
+#repeat-btn { position: relative; }
+.repeat-icon { display: none; }
+
+.repeat-state-off #repeat-all-icon { display: inline-block; }
+
+.repeat-state-all #repeat-all-icon { display: inline-block; }
+.repeat-state-all::before {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  right: 50%;
+  transform: translateX(50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: #ff4200;
+}
+
+.repeat-state-on #repeat-one-icon { display: inline-block; }
+
+/* Like */
+#like-off-icon { display: inline-block; }
+#like-on-icon { display: none; }
+
+#like-btn.liked #like-off-icon { display: none; }
+#like-btn.liked #like-on-icon { display: inline-block; }
+
+/* Lyrics */
+#lyrics-btn.active-state {
+  animation: orangeGlow 2s ease-in-out infinite;
+}
+
+@keyframes orangeGlow {
+  0%, 100% { text-shadow: 0 0 0 rgba(255, 66, 0, 0); }
+  50% { text-shadow: 0 3px 8px rgba(255, 66, 0, 0.7), 0 8px 22px rgba(255, 66, 0, 0.5); }
+}
+
+.track-info button,
+.middle-row button {
+  padding: 0;
+  width: 36px;
+  height: 36px;
+  /*outline: 2px solid black;*/
+}
+
+/* ========================= */
+/* 🔧 AJUSTES CLAVE AGREGADOS */
+/* ========================= */
+
+#view-toggle-btn {
+  margin-left: auto;      /* ← empuja el cluster de botones a la derecha */
+}
+
+#view-toggle-btn,
+#more-btn {
+  flex: 0 0 auto;         /* ← bloque rígido, no se estira ni se encoge */
+}
